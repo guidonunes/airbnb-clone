@@ -11,16 +11,13 @@ class App extends Component{
   }
 
   componentDidMount() {
-    const url = 'https://github.com/lewagon/flats-boilerplate/blob/master/flats.json';
-    fetch(url)
+    fetch('https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/flats.json')
       .then(response => response.json())
       .then((data) => {
         this.setState({
           flats: data
         });
       });
-
-
   };
 
   render() {
