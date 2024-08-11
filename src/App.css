@@ -6,7 +6,6 @@
   flex-basis: 60%;
   display: flex;
   flex-direction: column;
-  background-color: red;
 }
 
 .map{
@@ -14,7 +13,6 @@
   height: 100vh;
   top: 0;
   position: sticky;
-  background-color: green;
 }
 
 .flats {

@@ -17,6 +17,8 @@ function App() {
         <div className="search">
         </div>
         <div className="flats">
+          <Flat flat={flat} />
+          <Flat flat={flat} />
         </div>
       </div>
       <div className="map">
