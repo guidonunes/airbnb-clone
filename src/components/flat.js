@@ -1,4 +1,5 @@
 import React from "react";
+import "./flat.css";
 
 
 class Flat extends React.Component {
