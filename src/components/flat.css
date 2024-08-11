@@ -3,6 +3,9 @@
   margin: 10px;
   cursor: pointer;
 }
+.flat:hover {
+  opacity: 0.9;
+}
 
 .flat-picture {
   height: 200px;
