@@ -41,7 +41,7 @@ class App extends Component{
               return <Flat
                 key={flat.name}
                 flat={flat}
-                handleClick={} />;
+                selectFlat={this.selectFlat} />;
             })}
           </div>
         </div>
