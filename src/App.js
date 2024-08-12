@@ -35,6 +35,12 @@ class App extends Component{
         lat: 48.8575,
         lng: 2.3514
       };
+
+      if (this.state.selectedFlat) {
+        center.lat = this.state.selectedFlat.lat;
+        center.lng = this.state.selectedFlat.lng;
+      }
+
     return (
       <div className="app">
         <div className="main">
