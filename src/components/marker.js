@@ -1,20 +1,15 @@
 import React from "react";
 import "./marker.css";
 
+const Marker = ({ text, selected }) => {
+  const classes = `marker${selected ? " selected" : ""}`;
+  console.log(`Marker: ${text}, Selected: ${selected}`); // Debug log
 
-class Marker extends React.Component {
-  render() {
-    let classes = "marker";
-    if (this.props.selected) {
-      classes += " selected";
-    }
-
-    return (
-      <div className={classes}>
-        $ {this.props.text}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={classes}>
+      $ {text}
+    </div>
+  );
+};
 
 export default Marker;

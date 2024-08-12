@@ -1,29 +1,25 @@
 import React from "react";
 import "./flat.css";
 
-
-class Flat extends React.Component {
-  handleClick = () => {
+const Flat = ({ flat, selectFlat }) => {
+  const handleClick = () => {
     // Call the parent method selectFlat
-    this.props.selectFlat(this.props.flat);
+    selectFlat(flat);
   };
 
-  render() {
-    const title = this.props.flat.price + " " + this.props.flat.priceCurrency + " - " + this.props.flat.name;
+  const title = `${flat.price} ${flat.priceCurrency} - ${flat.name}`;
+  const style = {
+    backgroundImage: `url('${flat.imageUrl}')`,
+  };
 
-    const style = {
-      backgroundImage: `url('${this.props.flat.imageUrl}')`
-    };
-
-    return (
-      <div className="flat" onClick={this.handleClick}>
-        <div className="flat-picture" style={style}></div>
-        <div className="flat-title">
-          {title}
-        </div>
+  return (
+    <div className="flat" onClick={handleClick}>
+      <div className="flat-picture" style={style}></div>
+      <div className="flat-title">
+        {title}
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Flat;

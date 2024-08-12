@@ -1,80 +1,59 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import GoogleMapReact from 'google-map-react';
 import Flat from './components/flat';
 import Marker from './components/marker';
 
-class App extends Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      flats: [],
-      selectedFlat: null
-    };
-  }
+const App = () => {
+  const [flats, setFlats] = useState([]);
+  const [selectedFlat, setSelectedFlat] = useState(null);
 
-  componentDidMount() {
+  useEffect(() => {
     fetch('https://raw.githubusercontent.com/lewagon/flats-boilerplate/master/flats.json')
       .then(response => response.json())
-      .then((data) => {
-        this.setState({
-          flats: data
-        });
-      });
-  };
+      .then(data => setFlats(data));
+  }, []);
 
-  selectFlat = (flat) => {
+  const selectFlat = (flat) => {
     console.log(flat);
-    this.setState({
-      selectedFlat: flat
-    });
+    setSelectedFlat(flat);
   }
 
-  render() {
-    const center = {
-        lat: 48.8575,
-        lng: 2.3514
-      };
+  const center = selectedFlat ? { lat: selectedFlat.lat, lng: selectedFlat.lng } : { lat: 48.8575, lng: 2.3514 };
 
-      if (this.state.selectedFlat) {
-        center.lat = this.state.selectedFlat.lat;
-        center.lng = this.state.selectedFlat.lng;
-      }
-
-    return (
-      <div className="app">
-        <div className="main">
-          <div className="search">
-          </div>
-          <div className="flats">
-            {this.state.flats.map((flat) => {
-              return <Flat
-                key={flat.name}
-                flat={flat}
-                selectFlat={this.selectFlat} />;
-            })}
-          </div>
+  return (
+    <div className="app">
+      <div className="main">
+        <div className="search">
         </div>
-        <div className="map">
-          <GoogleMapReact
-            center={center}
-            zoom={11}
-          >
-          {this.state.flats.map((flat) => {
-              return <Marker
-                key={flat.name}
-                lat={flat.lat}
-                lng={flat.lng}
-                text={flat.price}
-                selected={flat === this.state.selectedFlat}/>;
-            })}
-          </GoogleMapReact>
-
-
+        <div className="flats">
+          {flats.map(flat => (
+            <Flat
+              key={flat.name}
+              flat={flat}
+              selectFlat={selectFlat}
+            />
+          ))}
         </div>
       </div>
-    );
-  }
+      <div className="map">
+        <GoogleMapReact
+          center={center}
+          zoom={11}
+        >
+          {flats.map(flat => (
+            <Marker
+              key={flat.name}
+              lat={flat.lat}
+              lng={flat.lng}
+              text={flat.price}
+              selected={flat === selectedFlat?.name}
+            />
+          ))}
+        </GoogleMapReact>
+      </div>
+    </div>
+  );
 }
 
 export default App;
