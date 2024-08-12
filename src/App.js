@@ -8,7 +8,8 @@ class App extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      flats: []
+      flats: [],
+      selectedFlat: null
     };
   }
 
@@ -23,8 +24,11 @@ class App extends Component{
   };
 
   selectFlat = (flat) => {
-
-  };
+    console.log(flat);
+    this.setState({
+      selectedFlat: flat
+    });
+  }
 
   render() {
     const center = {

@@ -4,6 +4,7 @@ import "./flat.css";
 
 class Flat extends React.Component {
   handleClick = () => {
+    // Call the parent method selectFlat
     this.props.selectFlat(this.props.flat);
   };
 
